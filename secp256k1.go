@@ -99,3 +99,15 @@ func (proof *RangeProof) Verify(commit [33]byte, extraData []byte) bool {
 
 	return ret == 1
 }
+
+func ReadRangeProof(bytes []byte) *RangeProof {
+	if len(bytes) < 675 {
+		return nil
+	}
+
+	// TODO: Check if valid format
+
+	rangeProof := new(RangeProof)
+	copy(rangeProof[:], bytes[0:675])
+	return rangeProof
+}
